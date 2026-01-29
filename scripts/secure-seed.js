@@ -10,19 +10,26 @@ async function main() {
     const passwordHash = await bcrypt.hash('password123', 10);
 
     // Users
-    const users = ['admin', 'candidate1', 'candidate2'];
-    for (const u of users) {
+    const users = [
+        { u: 'staff_user', r: 'HANDLER', f: 'Management Staff' },
+        { u: 'candidate_01', r: 'CANDIDATE', f: 'Student One' },
+        { u: 'candidate_02', r: 'CANDIDATE', f: 'Student Two' },
+        { u: 'candidate_03', r: 'CANDIDATE', f: 'Student Three' },
+        { u: 'candidate_04', r: 'CANDIDATE', f: 'Student Four' },
+        { u: 'candidate_05', r: 'CANDIDATE', f: 'Student Five' },
+    ];
+    for (const item of users) {
         await prisma.user.upsert({
-            where: { username: u },
-            update: { password: passwordHash },
+            where: { username: item.u },
+            update: { password: passwordHash, role: item.r },
             create: {
-                username: u,
+                username: item.u,
                 password: passwordHash,
-                role: u === 'admin' ? 'HANDLER' : 'CANDIDATE',
-                fullName: u === 'admin' ? 'Exam Controller' : `User ${u}`
+                role: item.r,
+                fullName: item.f
             }
         });
-        console.log(`Updated user: ${u}`);
+        console.log(`Updated user: ${item.u}`);
     }
 
     // Exam

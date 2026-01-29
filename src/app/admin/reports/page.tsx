@@ -62,7 +62,7 @@ export default function AdminReports() {
                         <tbody>
                             {logs.length === 0 ? (
                                 <tr>
-                                    <td colSpan="4" style={{ padding: '2rem', textAlign: 'center', color: '#888' }}>No malpractice recorded yet.</td>
+                                    <td colSpan={4} style={{ padding: '2rem', textAlign: 'center', color: '#888' }}>No malpractice recorded yet.</td>
                                 </tr>
                             ) : logs.map((log) => (
                                 <tr key={log.id} style={{ borderBottom: '1px solid #1e293b' }}>

@@ -7,7 +7,7 @@ import { jwtVerify } from 'jose';
 const SECRET_KEY = process.env.JWT_SECRET_KEY || 'default-secret-key-change-in-prod';
 const key = new TextEncoder().encode(SECRET_KEY);
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
     const path = request.nextUrl.pathname;
 
     // 1. Define guarded routes

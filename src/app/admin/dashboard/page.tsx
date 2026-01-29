@@ -2,7 +2,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import styles from '@/app/globals.css'; // Reusing global styles for consistency
 
 export default function AdminDashboard() {
     const [stats, setStats] = useState({
